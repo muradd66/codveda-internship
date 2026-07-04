@@ -1,6 +1,4 @@
-// ==========================================
-// 1. STATE MANAGEMENT & CONFIG
-// ==========================================
+
 const API_KEY = "14f70647643cfc65b7633986a74d806e";
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
@@ -37,9 +35,7 @@ const elements = {
     navLinks: document.querySelectorAll(".links a")
 };
 
-// ==========================================
-// 2. AUTHENTICATION MODULE
-// ==========================================
+
 let isLoginMode = true;
 
 function updateAuthUI() {
@@ -140,9 +136,7 @@ function toggleFavorite(media) {
     if(AppState.currentMode === "favorites") loadFavorites();
 }
 
-// ==========================================
-// 3. CORE API FUNCTIONS
-// ==========================================
+
 async function fetchData(endpoint) {
     try {
         const response = await fetch(`${BASE_URL}${endpoint}`);
@@ -154,7 +148,6 @@ async function fetchData(endpoint) {
     }
 }
 
-// Tam proqrammatik, modern DOM manipulyasiyası (innerHTML olmadan)
 function renderMediaCards(mediaList) {
     elements.grid.replaceChildren(); 
 
@@ -225,9 +218,7 @@ function renderMediaCards(mediaList) {
     elements.grid.append(fragment);
 }
 
-// ==========================================
-// 4. ROUTING & SECTION LOGIC
-// ==========================================
+
 async function loadRoute(mode, page = 1) {
     AppState.currentMode = mode;
     AppState.currentPage = page;
@@ -303,9 +294,7 @@ elements.navLinks.forEach(link => {
     });
 });
 
-// ==========================================
-// 5. SEARCH & GENRES
-// ==========================================
+
 elements.searchBtn.addEventListener("click", () => {
     if (elements.searchInput.value.trim() !== "") {
         AppState.currentQuery = elements.searchInput.value.trim();
@@ -336,9 +325,7 @@ async function loadGenres() {
     }
 }
 
-// ==========================================
-// 6. PAGINATION & DETAILS (Tamamilə xətasız və modern)
-// ==========================================
+
 elements.prevBtn.addEventListener("click", () => {
     if (AppState.currentPage > 1) loadRoute(AppState.currentMode, AppState.currentPage - 1);
 });
@@ -385,7 +372,6 @@ async function loadDetails(id, type = 'movie') {
         const fullDetailContainer = document.createElement("div");
         fullDetailContainer.classList.add("full-detail-container");
 
-        // Sol hissə (Şəkil və ya Treyler)
         const leftSide = document.createElement("div");
         leftSide.classList.add("detail-left-side");
 
@@ -435,7 +421,6 @@ async function loadDetails(id, type = 'movie') {
 
         leftSide.append(topCastTitle, castContainer);
 
-        // Sağ hissə (Məlumatlar)
         const detailInfo = document.createElement("div");
         detailInfo.classList.add("detail-info");
 
@@ -482,9 +467,7 @@ async function loadDetails(id, type = 'movie') {
     }
 }
 
-// ==========================================
-// 7. INITIALIZATION
-// ==========================================
+
 window.addEventListener("DOMContentLoaded", () => {
     updateAuthUI();
     loadGenres();

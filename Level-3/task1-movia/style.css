@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* ==========================================
-   1. GLOBAL STYLES & RESET
-   ========================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -22,7 +20,6 @@ body {
     flex-direction: column;
 }
 
-/* Navigation */
 nav {
     display: flex;
     justify-content: space-between;
@@ -61,7 +58,7 @@ nav {
 .links {
     display: flex;
     align-items: center;
-    gap: 25px; /* Margin əvəzinə tək nöqtədən boşluq idarəçiliyi */
+    gap: 25px; 
 }
 
 .links a {
@@ -78,7 +75,6 @@ nav {
     text-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
 }
 
-/* Auth Trigger Button */
 .person-add {
     display: flex;
     align-items: center;
@@ -103,9 +99,7 @@ nav {
     transform: translateY(-2px);
 }
 
-/* ==========================================
-   2. SEARCH & FILTER SECTION
-   ========================================== */
+
 .search-container {
     display: flex;
     justify-content: center;
@@ -158,7 +152,6 @@ nav {
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
-/* Custom Select Genre */
 .select-container {
     position: relative;
     width: 200px;
@@ -213,9 +206,7 @@ nav {
     display: block;
 }
 
-/* ==========================================
-   3. MAIN MEDIA GRID & CARDS
-   ========================================== */
+
 .film-container {
     margin: 40px 6vw;
     gap: 25px;
@@ -309,9 +300,7 @@ nav {
     transform: scale(1.15);
 }
 
-/* ==========================================
-   4. PAGINATION & NO RESULTS
-   ========================================== */
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -395,9 +384,7 @@ nav {
     background-color: #4f46e5;
 }
 
-/* ==========================================
-   5. DETAIL PAGE STYLING
-   ========================================== */
+
 #detail-page {
     width: 100%;
     min-height: 100vh;
@@ -505,9 +492,7 @@ nav {
     margin-bottom: 40px;
 }
 
-/* ==========================================
-   6. UTILITIES & MODAL SYSTEM
-   ========================================== */
+
 .hidden {
     display: none !important;
 }
@@ -634,9 +619,7 @@ nav {
     color: white;
 }
 
-/* ==========================================
-   7. RESPONSIVENESS (MEDIA QUERIES)
-   ========================================== */
+
 @media screen and (max-width: 1024px) {
     .film-container {
         grid-template-columns: repeat(3, 1fr);

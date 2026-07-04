@@ -16,7 +16,6 @@
                 <span class="logo-name"> Movia</span>
             </div>
 
-            <!-- Menyu linklərinə data-page atributu əlavə edildi -->
             <div class="links">
                 <a href="#" data-page="films" class="active">Films</a>
                 <a href="#" data-page="series">Series</a>
@@ -28,12 +27,11 @@
                 <span class="person-add"> Log In <i class="bi bi-person-add"></i></span>
             </div>
             
-            <!-- Mobil menyu üçün burger icon -->
             <div class="mobile-menu-btn hidden"><i class="bi bi-list"></i></div>
+            <div id="auth-trigger"></div>
         </nav>
     </header>
 
-    <!-- Login / Register Modal -->
     <div id="auth-modal" class="modal hidden">
         <div class="modal-content">
             <span class="close-modal"><i class="bi bi-x-lg"></i></span>
@@ -50,7 +48,6 @@
     <main>
         <section id="home-page" class="page-section active">
             <div class="content">
-                <!-- Səhifə başlığı dinamik dəyişəcək -->
                 <h2 id="section-title" class="section-title">Discover Movies</h2>
                 
                 <div class="search-container" id="search-bar-container">
@@ -62,23 +59,21 @@
                         </div>
                         <div class="options-list"></div>
                     </div>
-                    <button class="search-button">Axtar</button>
+                    <button class="search-button">Search</button>
                 </div>
 
                 <div class="film-container" id="main-grid">
-                    <!-- Filmlər bura yüklənəcək -->
                 </div>
 
                 <div class="pagination pagination-container">
-                    <button class="prevBtn"><i class="bi bi-chevron-left"></i> Əvvəlki</button>
+                    <button class="prevBtn"><i class="bi bi-chevron-left"></i> Next</button>
                     <span class="pageNumber"></span>
-                    <button class="nextBtn">Növbəti <i class="bi bi-chevron-right"></i></button>
+                    <button class="nextBtn">Previous <i class="bi bi-chevron-right"></i></button>
                 </div>
             </div>
         </section>
 
         <section id="detail-page" class="page-section hidden">
-            <!-- Detallar bura yüklənəcək -->
         </section>
     </main>
 
