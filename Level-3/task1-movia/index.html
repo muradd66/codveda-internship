@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./images_and_logos/play.png" type="image/png">
+    <title>Movia</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-area">
+                <img class="logo" src="./images_and_logos/play.png" alt="logo">
+                <span class="logo-name"> Movia</span>
+            </div>
+
+            <!-- Menyu linklərinə data-page atributu əlavə edildi -->
+            <div class="links">
+                <a href="#" data-page="films" class="active">Films</a>
+                <a href="#" data-page="series">Series</a>
+                <a href="#" data-page="trending">Trending</a>
+                <a href="#" data-page="favorites">Favorites</a>
+            </div>
+
+            <div class="login" id="auth-trigger">
+                <span class="person-add"> Log In <i class="bi bi-person-add"></i></span>
+            </div>
+            
+            <!-- Mobil menyu üçün burger icon -->
+            <div class="mobile-menu-btn hidden"><i class="bi bi-list"></i></div>
+        </nav>
+    </header>
+
+    <!-- Login / Register Modal -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal"><i class="bi bi-x-lg"></i></span>
+            <h2 id="modal-title">Welcome to Movia</h2>
+            <form id="auth-form">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit" id="auth-submit">Log In</button>
+            </form>
+            <p class="auth-switch">Don't have an account? <span id="switch-auth-mode">Sign Up</span></p>
+        </div>
+    </div>
+
+    <main>
+        <section id="home-page" class="page-section active">
+            <div class="content">
+                <!-- Səhifə başlığı dinamik dəyişəcək -->
+                <h2 id="section-title" class="section-title">Discover Movies</h2>
+                
+                <div class="search-container" id="search-bar-container">
+                    <input class="search-input" placeholder="Discover your next favorite movie">
+                    <div class="select-container">
+                        <div class="select-genre">
+                            <span class="genreValue"> Find your mood...</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="options-list"></div>
+                    </div>
+                    <button class="search-button">Axtar</button>
+                </div>
+
+                <div class="film-container" id="main-grid">
+                    <!-- Filmlər bura yüklənəcək -->
+                </div>
+
+                <div class="pagination pagination-container">
+                    <button class="prevBtn"><i class="bi bi-chevron-left"></i> Əvvəlki</button>
+                    <span class="pageNumber"></span>
+                    <button class="nextBtn">Növbəti <i class="bi bi-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="detail-page" class="page-section hidden">
+            <!-- Detallar bura yüklənəcək -->
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="./app.js"></script>
+</body>
+</html>
