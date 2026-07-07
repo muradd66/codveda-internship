@@ -4,7 +4,7 @@ const ShopState = {
     categories: [],
     cart: JSON.parse(localStorage.getItem("aura_cart")) || [],
     favorites: JSON.parse(localStorage.getItem("aura_favs")) || [],
-    
+
     // Filtering Rules
     currentCategory: "all",
     currentView: "all", // 'all' or 'favorites'
@@ -20,10 +20,10 @@ const DOM = {
     totalPrice: document.getElementById("total-price"),
     drawer: document.getElementById("cart-drawer"),
     overlay: document.getElementById("drawer-overlay"),
-    
+
     cartTrigger: document.getElementById("cart-trigger"),
-    cartClose: document.getElementById("cart-close"), 
-    
+    cartClose: document.getElementById("cart-close"),
+
     searchInput: document.getElementById("search-input"),
     toastContainer: document.getElementById("toast-container"),
     tabAll: document.getElementById("tab-all"),
@@ -71,9 +71,9 @@ async function fetchMassiveCatalog() {
         }));
 
         ShopState.products = [...mappedFakeStore, ...mappedDummyJson];
-        
+
         ShopState.categories = ["all", ...new Set(ShopState.products.map(p => p.category))];
-        
+
         renderCategories();
         renderStore();
     } catch (error) {
@@ -90,13 +90,13 @@ function renderCategories() {
         const btn = document.createElement("button");
         btn.classList.add("category-btn");
         if (ShopState.currentCategory === category) btn.classList.add("active");
-        
+
         btn.textContent = category === "all" ? "All Categories" : category;
-        
+
         btn.addEventListener("click", () => {
             document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
-            
+
             ShopState.currentCategory = category;
             renderStore();
         });
@@ -115,13 +115,13 @@ function createProductCard(product) {
     const favBtn = document.createElement("button");
     favBtn.classList.add("fav-card-btn");
     favBtn.setAttribute("aria-label", "Toggle Favorite");
-    
+
     const heartSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     heartSvg.setAttribute("viewBox", "0 0 24 24");
     heartSvg.setAttribute("fill", "currentColor");
     heartSvg.style.width = "18px";
     heartSvg.style.height = "18px";
-    
+
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("d", "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z");
     heartSvg.append(path);
@@ -164,7 +164,7 @@ function createProductCard(product) {
 function renderStore() {
     DOM.grid.replaceChildren();
 
-    let processed = ShopState.currentView === "favorites" 
+    let processed = ShopState.currentView === "favorites"
         ? ShopState.products.filter(p => ShopState.favorites.includes(p.id))
         : ShopState.products;
 
@@ -174,8 +174,8 @@ function renderStore() {
 
     if (ShopState.searchQuery.trim() !== "") {
         const query = ShopState.searchQuery.toLowerCase();
-        processed = processed.filter(p => 
-            p.title.toLowerCase().includes(query) || 
+        processed = processed.filter(p =>
+            p.title.toLowerCase().includes(query) ||
             p.category.toLowerCase().includes(query)
         );
     }
@@ -196,7 +196,7 @@ function renderStore() {
 
     const fragment = document.createDocumentFragment();
     processed.forEach(product => fragment.append(createProductCard(product)));
-    
+
     DOM.grid.append(fragment);
     updateCounters();
 }
@@ -218,12 +218,12 @@ function showToast(message) {
     toast.classList.add("toast");
     toast.textContent = message;
     DOM.toastContainer.append(toast);
-    
+
     requestAnimationFrame(() => toast.classList.add("show"));
 
     setTimeout(() => {
         toast.classList.remove("show");
-        setTimeout(() => toast.remove(), 400); 
+        setTimeout(() => toast.remove(), 400);
     }, 2500);
 }
 
@@ -236,9 +236,9 @@ function toggleFavorite(productId) {
     } else {
         ShopState.favorites.splice(index, 1);
     }
-    
+
     localStorage.setItem("aura_favs", JSON.stringify(ShopState.favorites));
-    renderStore(); 
+    renderStore();
 }
 
 function addToCart(product) {
@@ -258,7 +258,7 @@ function updateCartQuantity(productId, newQty) {
 
     if (newQty <= 0) ShopState.cart.splice(idx, 1);
     else ShopState.cart[idx].quantity = newQty;
-    
+
     syncCart();
 }
 
@@ -320,7 +320,7 @@ function renderCart() {
 
     const fragment = document.createDocumentFragment();
     let totalItems = 0;
-    
+
     const totalAmount = ShopState.cart.reduce((sum, item) => {
         totalItems += item.quantity;
         return sum + (item.price * item.quantity);
@@ -358,7 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCart();
 
     DOM.cartTrigger.addEventListener("click", toggleCartDrawer);
-    DOM.cartClose.addEventListener("click", toggleCartDrawer); 
+    DOM.cartClose.addEventListener("click", toggleCartDrawer);
     DOM.overlay.addEventListener("click", toggleCartDrawer);
 
     DOM.searchInput.addEventListener("input", (e) => {
@@ -385,4 +385,17 @@ document.addEventListener("DOMContentLoaded", () => {
         ShopState.currentView = "favorites";
         renderStore();
     });
+    const newsletterForm = document.getElementById("newsletter-form");
+    const newsletterInput = document.getElementById("newsletter-input");
+
+    if (newsletterForm) {
+        newsletterForm.addEventListener("submit", (e) => {
+            e.preventDefault(); // Səhifənin yenilənməsinin qarşısını alır
+
+            if (newsletterInput.value.trim() !== "") {
+                showToast("Welcome to the Inner Circle! 🎉");
+                newsletterInput.value = ""; // Formu təmizləyir
+            }
+        });
+    }
 });
